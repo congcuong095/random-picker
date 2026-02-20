@@ -35,16 +35,22 @@
           <span class="text-sm text-slate-400" data-i18n="spinner.winner">Winner: </span>
           <span class="text-lg font-bold gradient-text" id="winner-text"></span>
         </div>
-        <!-- Buttons -->
+        <!-- Edit + Reset row -->
         <div class="flex gap-3">
-          <button id="spin-btn" class="btn-primary flex-1 justify-center py-3 text-lg">
-            <i class="fa-solid fa-rotate"></i>
-            <span data-i18n="spinner.spin">SPIN!</span>
-          </button>
-          <button id="edit-items-btn" class="btn-secondary py-3" title="Edit Items">
+          <button id="edit-items-btn" class="btn-secondary flex-1 justify-center py-2">
             <i class="fa-solid fa-pen-to-square"></i>
+            <span data-i18n="spinner.edit">Edit</span>
+          </button>
+          <button id="reset-spinner-btn" class="btn-secondary flex-1 justify-center py-2">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span data-i18n="spinner.reset">Reset</span>
           </button>
         </div>
+        <!-- Spin button full width -->
+        <button id="spin-btn" class="btn-primary w-full justify-center py-3 text-lg">
+          <i class="fa-solid fa-rotate"></i>
+          <span data-i18n="spinner.spin">SPIN!</span>
+        </button>
       </div>
     </div>
   </main>

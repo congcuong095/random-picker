@@ -13,12 +13,8 @@
     if (!btn) return;
     window.sound.click();
     diceCount = parseInt(btn.dataset.count);
-    document.querySelectorAll('.dice-count-btn').forEach(b => {
-      b.classList.remove('bg-amber-600', 'active');
-      b.classList.add('bg-white/10');
-    });
-    btn.classList.remove('bg-white/10');
-    btn.classList.add('bg-amber-600', 'active');
+    document.querySelectorAll('.dice-count-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   });
 
   // Roll

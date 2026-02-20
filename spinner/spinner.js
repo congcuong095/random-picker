@@ -132,8 +132,8 @@
   function spin() {
     if (spinning || items.length < 2) {
       if (items.length < 2) {
-        Swal.fire({ icon: 'info', title: 'Need more items',
-          text: 'Add at least 2 items to spin.',
+        Swal.fire({ icon: 'info', title: window.t('spinner.need_more') || 'Need more items',
+          text: window.t('spinner.need_more_text') || 'Add at least 2 items to spin.',
           background: '#1e293b', color: '#f1f5f9' });
       }
       return;
@@ -184,7 +184,7 @@
 
     window.sound.success();
     Swal.fire({
-      title: '🎉 Winner!',
+      title: `🎉 ${window.t('spinner.winner_title')}`,
       html: `<span style="font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${winner}</span>`,
       background: '#1e293b',
       color: '#f1f5f9',
@@ -197,19 +197,25 @@
   document.getElementById('edit-items-btn').addEventListener('click', () => {
     const currentText = items.join('\n');
     Swal.fire({
-      title: 'Edit Items',
-      html: '<textarea id="swal-items" class="swal2-textarea" style="height:200px;resize:none;background:#1e293b;color:#f1f5f9;border:1px solid rgba(255,255,255,0.1);border-radius:0.75rem;" placeholder="One item per line&#10;Pizza&#10;Burger&#10;Sushi"></textarea>',
+      title: window.t('spinner.edit_title'),
+      html: '<textarea id="swal-items" class="swal2-textarea" style="height:200px;resize:none;background:#1e293b;color:#f1f5f9;border:1px solid rgba(255,255,255,0.1);border-radius:0.75rem;width:100%;box-sizing:border-box;" placeholder="One item per line&#10;Pizza&#10;Burger&#10;Sushi"></textarea>',
       background: '#1e293b',
       color: '#f1f5f9',
       showCancelButton: true,
-      confirmButtonText: 'Update Wheel',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: window.t('spinner.update'),
+      cancelButtonText: window.t('spinner.cancel'),
       confirmButtonColor: '#6366f1',
       didOpen: () => {
         document.getElementById('swal-items').value = currentText;
       },
       preConfirm: () => {
-        return document.getElementById('swal-items').value;
+        const text = document.getElementById('swal-items').value;
+        const lines = text.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+        if (lines.length > 100) {
+          Swal.showValidationMessage(window.t('spinner.max_items_error'));
+          return false;
+        }
+        return text;
       }
     }).then((result) => {
       if (result.isConfirmed) {

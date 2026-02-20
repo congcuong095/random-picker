@@ -19,7 +19,7 @@
   <div id="header-root"></div>
 
   <main>
-    <!-- Coin + Result (center) -->
+    <!-- Coin + Result + History (center) -->
     <div class="result-area flex-col gap-4">
       <div class="coin-container">
         <div class="coin-inner" id="coin">
@@ -42,21 +42,26 @@
 
     <!-- Controls (bottom) -->
     <div class="controls-area glass-strong">
-      <div class="max-w-2xl mx-auto space-y-3">
+      <div class="max-w-2xl mx-auto space-y-2">
+        <!-- History -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex gap-4 text-sm">
+              <span><span class="text-slate-400">H:</span> <span class="font-bold text-amber-400" id="heads-count">0</span></span>
+              <span><span class="text-slate-400">T:</span> <span class="font-bold text-slate-300" id="tails-count">0</span></span>
+            </div>
+            <button id="clear-history" class="text-xs text-slate-500 hover:text-slate-300 transition-colors" data-i18n="coin.clear">Clear</button>
+          </div>
+          <div id="coin-history" class="flex gap-2 overflow-x-auto pb-1">
+            <span class="text-slate-500 text-sm" data-i18n="coin.no_flips">No flips yet</span>
+          </div>
+          <p id="coin-max-msg" class="text-xs text-amber-400 mt-1 hidden" data-i18n="coin.max_msg">Clear history to continue.</p>
+        </div>
+        <!-- Flip button -->
         <button id="flip-btn" class="btn-primary w-full text-lg py-3 justify-center">
           <i class="fa-solid fa-hand-pointer"></i>
           <span data-i18n="coin.flip">Flip Coin</span>
         </button>
-        <div class="flex items-center gap-4">
-          <div class="flex gap-2 flex-1 overflow-x-auto" id="coin-history">
-            <span class="text-slate-500 text-sm" data-i18n="coin.no_flips">No flips yet</span>
-          </div>
-          <div class="flex gap-4 flex-shrink-0 text-sm">
-            <span><span class="text-slate-400">H:</span> <span class="font-bold text-amber-400" id="heads-count">0</span></span>
-            <span><span class="text-slate-400">T:</span> <span class="font-bold text-slate-300" id="tails-count">0</span></span>
-          </div>
-          <button id="clear-history" class="text-xs text-slate-500 hover:text-slate-300 transition-colors flex-shrink-0" data-i18n="coin.clear">Clear</button>
-        </div>
       </div>
     </div>
   </main>

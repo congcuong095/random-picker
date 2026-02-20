@@ -33,18 +33,14 @@
           <div class="flex items-center gap-2">
             <span class="text-sm text-slate-400" data-i18n="card.cards_label">Cards:</span>
             <div class="flex gap-1.5" id="card-count-btns">
-              <button class="card-count-btn active w-9 h-9 rounded-lg bg-indigo-600 text-white font-bold transition-all hover:scale-105 text-sm" data-count="1">1</button>
-              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="2">2</button>
-              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="3">3</button>
-              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="4">4</button>
-              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="5">5</button>
+              <button class="card-count-btn active w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 text-sm" data-count="1">1</button>
+              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 text-sm" data-count="2">2</button>
+              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 text-sm" data-count="3">3</button>
+              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 text-sm" data-count="4">4</button>
+              <button class="card-count-btn w-9 h-9 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 text-sm" data-count="5">5</button>
             </div>
           </div>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="no-duplicate" checked class="custom-checkbox">
-            <span class="text-xs text-slate-300" data-i18n="card.no_dup">No duplicates</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
+<label class="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" id="include-joker" class="custom-checkbox">
             <span class="text-xs text-slate-300" data-i18n="card.jokers">Jokers</span>
           </label>
@@ -53,10 +49,6 @@
           <button id="draw-btn" class="btn-primary flex-1 justify-center py-3">
             <i class="fa-solid fa-hand-pointer"></i>
             <span data-i18n="card.draw">Draw Cards</span>
-          </button>
-          <button id="shuffle-btn" class="btn-secondary py-3">
-            <i class="fa-solid fa-shuffle"></i>
-            <span data-i18n="card.shuffle">Shuffle</span>
           </button>
         </div>
       </div>

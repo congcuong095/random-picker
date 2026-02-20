@@ -12,10 +12,8 @@
   function generate() {
     const min = parseInt(document.getElementById('num-min').value);
     const max = parseInt(document.getElementById('num-max').value);
-    const count = parseInt(document.getElementById('num-count').value);
-    const noRepeat = document.getElementById('no-repeat').checked;
 
-    if (isNaN(min) || isNaN(max) || isNaN(count)) {
+    if (isNaN(min) || isNaN(max)) {
       Swal.fire({ icon: 'error', title: 'Invalid Input', text: 'Please enter valid numbers.',
         background: '#1e293b', color: '#f1f5f9' });
       return;
@@ -27,31 +25,22 @@
       return;
     }
 
-    if (count < 1 || count > 1000) {
-      Swal.fire({ icon: 'error', title: 'Invalid Count', text: 'Count must be between 1 and 1000.',
-        background: '#1e293b', color: '#f1f5f9' });
-      return;
-    }
+    let count = parseInt(document.getElementById('num-count').value);
+    if (isNaN(count) || count < 1) count = 1;
+    if (count > 50) count = 50;
 
-    if (noRepeat && count > (max - min + 1)) {
-      Swal.fire({ icon: 'error', title: 'Range Too Small',
-        text: `Cannot pick ${count} unique numbers from range ${min}-${max} (only ${max - min + 1} possible).`,
-        background: '#1e293b', color: '#f1f5f9' });
-      return;
+    const maxPossible = max - min + 1;
+    if (count > maxPossible) {
+      count = maxPossible;
     }
+    document.getElementById('num-count').value = count;
 
     window.sound.click();
 
-    if (noRepeat) {
-      const pool = [];
-      for (let i = min; i <= max; i++) pool.push(i);
-      results = shuffle(pool).slice(0, count);
-    } else {
-      results = [];
-      for (let i = 0; i < count; i++) {
-        results.push(Math.floor(Math.random() * (max - min + 1)) + min);
-      }
-    }
+    // Always no-repeat: draw from pool
+    const pool = [];
+    for (let i = min; i <= max; i++) pool.push(i);
+    results = shuffle(pool).slice(0, count);
 
     renderResults();
     window.sound.success();
@@ -82,7 +71,6 @@
     document.getElementById('num-min').value = 1;
     document.getElementById('num-max').value = 100;
     document.getElementById('num-count').value = 1;
-    document.getElementById('no-repeat').checked = false;
     window.sound.click();
   }
 })();

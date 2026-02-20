@@ -4,7 +4,7 @@
 
 (function () {
   const SUITS = ['H', 'D', 'C', 'S'];
-  const SUIT_NAMES = { H: 'Hearts', D: 'Diamonds', C: 'Clubs', S: 'Spades' };
+  const SUIT_I18N = { H: 'card.suit_hearts', D: 'card.suit_diamonds', C: 'card.suit_clubs', S: 'card.suit_spades' };
   const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
   const IMG_BASE = '../assets/images/cards/';
 
@@ -18,14 +18,15 @@
       for (const val of VALUES) {
         d.push({
           code: val + suit,
-          name: `${val} of ${SUIT_NAMES[suit]}`,
+          value: val,
+          suitKey: SUIT_I18N[suit],
           img: `${IMG_BASE}${val}${suit}.svg`
         });
       }
     }
     if (includeJokers) {
-      d.push({ code: 'Joker1', name: 'Joker (Red)', img: `${IMG_BASE}Joker1.svg` });
-      d.push({ code: 'Joker2', name: 'Joker (Black)', img: `${IMG_BASE}Joker2.svg` });
+      d.push({ code: 'Joker1', nameKey: 'card.joker_red', img: `${IMG_BASE}Joker1.svg` });
+      d.push({ code: 'Joker2', nameKey: 'card.joker_black', img: `${IMG_BASE}Joker2.svg` });
     }
     return d;
   }
@@ -38,50 +39,32 @@
     }
   }
 
+  function getCardName(card) {
+    if (card.nameKey) return window.t(card.nameKey);
+    return `${card.value} ${window.t(card.suitKey)}`;
+  }
+
   // Card count buttons
   document.getElementById('card-count-btns').addEventListener('click', (e) => {
     const btn = e.target.closest('.card-count-btn');
     if (!btn) return;
     window.sound.click();
     cardCount = parseInt(btn.dataset.count);
-    document.querySelectorAll('.card-count-btn').forEach(b => {
-      b.classList.remove('bg-indigo-600', 'active');
-      b.classList.add('bg-white/10');
-    });
-    btn.classList.remove('bg-white/10');
-    btn.classList.add('bg-indigo-600', 'active');
+    document.querySelectorAll('.card-count-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   });
 
-  // Draw cards
+  // Draw cards (always no-duplicate)
   document.getElementById('draw-btn').addEventListener('click', () => {
     const includeJoker = document.getElementById('include-joker').checked;
-    const noDuplicate = document.getElementById('no-duplicate').checked;
 
     deck = createDeck(includeJoker);
     shuffleDeck();
 
-    let drawn = [];
-    if (noDuplicate) {
-      drawn = deck.slice(0, cardCount);
-    } else {
-      for (let i = 0; i < cardCount; i++) {
-        drawn.push(deck[Math.floor(Math.random() * deck.length)]);
-      }
-    }
+    const drawn = deck.slice(0, cardCount);
 
     window.sound.click();
     renderCards(drawn);
-  });
-
-  // Shuffle button
-  document.getElementById('shuffle-btn').addEventListener('click', () => {
-    window.sound.click();
-    const results = document.getElementById('card-results');
-    const cards = results.querySelectorAll('.card-container');
-    if (cards.length === 0) return;
-
-    // Re-draw with shuffle animation
-    document.getElementById('draw-btn').click();
   });
 
   // Render cards with flip animation
@@ -97,10 +80,10 @@
       container.innerHTML = `
         <div class="card-inner" style="width: 100%; height: 100%;">
           <div class="card-front flex items-center justify-center">
-            <img src="${IMG_BASE}card_back.svg" alt="Card Back" class="w-full h-full object-contain rounded-xl">
+            <img src="${IMG_BASE}card_back.svg" alt="Card Back" class="w-full h-full object-contain rounded">
           </div>
           <div class="card-back flex items-center justify-center bg-white">
-            <img src="${card.img}" alt="${card.name}" class="w-full h-full object-contain rounded-xl">
+            <img src="${card.img}" alt="${getCardName(card)}" class="w-full h-full object-contain rounded">
           </div>
         </div>
       `;
@@ -117,14 +100,14 @@
 
     // Show result popup after all cards flipped
     setTimeout(() => {
-      const names = cards.map(c => c.name).join('<br>');
+      const names = cards.map(c => getCardName(c)).join('<br>');
       Swal.fire({
-        title: '<span style="color:#a78bfa">Your Cards</span>',
+        title: `<span style="color:#a78bfa">${window.t('card.result_title')}</span>`,
         html: `<div style="font-size: 1.1rem; line-height: 2;">${names}</div>`,
         background: '#1e293b',
         color: '#f1f5f9',
         confirmButtonColor: '#6366f1',
-        confirmButtonText: 'Nice!',
+        confirmButtonText: window.t('card.result_ok'),
         showClass: { popup: 'animate__animated animate__fadeInUp' }
       });
     }, 500 + cards.length * 300 + 400);

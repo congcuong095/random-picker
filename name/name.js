@@ -33,18 +33,25 @@
   document.getElementById('edit-list-btn').addEventListener('click', () => {
     const currentText = names.map(n => n.name).join('\n');
     Swal.fire({
-      title: 'Edit Names',
-      html: '<textarea id="swal-names" class="swal2-textarea" style="height:200px;resize:none;background:#1e293b;color:#f1f5f9;border:1px solid rgba(255,255,255,0.1);border-radius:0.75rem;" placeholder="One name per line&#10;Alice&#10;Bob&#10;Charlie"></textarea>',
+      title: window.t('name.edit_title'),
+      html: '<textarea id="swal-names" class="swal2-textarea" style="height:200px;resize:none;background:#1e293b;color:#f1f5f9;border:1px solid rgba(255,255,255,0.1);border-radius:0.75rem;width:100%;box-sizing:border-box;" placeholder="One name per line&#10;Alice&#10;Bob&#10;Charlie"></textarea>',
       background: '#1e293b',
       color: '#f1f5f9',
       showCancelButton: true,
-      confirmButtonText: 'Save',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: window.t('name.save'),
+      cancelButtonText: window.t('name.cancel'),
+      confirmButtonColor: '#6366f1',
       didOpen: () => {
         document.getElementById('swal-names').value = currentText;
       },
       preConfirm: () => {
-        return document.getElementById('swal-names').value;
+        const text = document.getElementById('swal-names').value;
+        const lines = text.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+        if (lines.length > 100) {
+          Swal.showValidationMessage(window.t('name.max_error'));
+          return false;
+        }
+        return text;
       }
     }).then((result) => {
       if (result.isConfirmed) {
@@ -57,7 +64,7 @@
         window.sound.click();
         Swal.fire({
           toast: true, position: 'top-end', icon: 'success',
-          title: `${names.length} names saved!`,
+          title: `${names.length} ${window.t('name.saved_msg')}`,
           showConfirmButton: false, timer: 1500,
           background: '#1e293b', color: '#f1f5f9'
         });
@@ -82,8 +89,8 @@
     const available = names.filter(n => !n.picked);
     if (available.length === 0) {
       Swal.fire({
-        icon: 'info', title: 'All names picked!',
-        text: names.length === 0 ? 'Add names first by clicking the edit button.' : 'Reset the list to pick again.',
+        icon: 'info', title: window.t('name.all_picked'),
+        text: names.length === 0 ? window.t('name.add_first') : window.t('name.reset_hint'),
         background: '#1e293b', color: '#f1f5f9'
       });
       return;

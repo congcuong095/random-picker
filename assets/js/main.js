@@ -6,7 +6,7 @@
   const TRANSLATIONS = {
     en: {
       'nav.home':'Home','nav.card':'Card','nav.number':'Number','nav.spinner':'Spinner',
-      'nav.more':'More','nav.dice':'Dice','nav.coin':'Coin','nav.name':'Name','nav.color':'Color',
+      'nav.more':'More','nav.dice':'Dice','nav.coin':'Coin','nav.name':'Name',
       'home.badge':'Free & Open Source Tools','home.title':'Random Picker','home.subtitle':'',
       'home.desc':'A collection of beautifully crafted random generator tools. Cards, numbers, spinners, and more — all in one place.',
       'home.explore':'Explore Tools','home.all_tools':'All Tools','home.choose':'Choose a tool and start generating',
@@ -16,19 +16,26 @@
       'tool.dice.name':'Random Dice','tool.dice.desc':'Roll up to 6 dice with shake animation and total calculation.',
       'tool.coin.name':'Random Coin','tool.coin.desc':'Flip a coin with realistic toss animation. Track your heads and tails history.',
       'tool.name.name':'Name Picker','tool.name.desc':'Pick a random name from your list. Auto-save with elimination mode.',
-      'tool.color.name':'Random Color','tool.color.desc':'Generate random colors with HEX & RGB values. Copy with one click.',
       'try_now':'Try Now',
-      'card.placeholder':'Click "Draw Cards" to start','card.cards_label':'Cards:','card.no_dup':'No duplicates','card.jokers':'Jokers','card.draw':'Draw Cards','card.shuffle':'Shuffle',
-      'number.placeholder':'No numbers generated yet','number.min':'Min','number.max':'Max','number.count':'Count','number.no_repeat':'No repeats','number.generate':'Generate',
+      'card.placeholder':'Click "Draw Cards" to start','card.cards_label':'Cards:','card.jokers':'Jokers','card.draw':'Draw Cards',
+      'card.result_title':'Your Cards','card.result_ok':'Nice!',
+      'card.suit_hearts':'Hearts','card.suit_diamonds':'Diamonds','card.suit_clubs':'Clubs','card.suit_spades':'Spades',
+      'card.joker_red':'Joker (Red)','card.joker_black':'Joker (Black)',
+      'number.placeholder':'No numbers generated yet','number.min':'Min','number.max':'Max','number.count':'Count','number.generate':'Generate',
       'spinner.winner':'Winner:','spinner.spin':'SPIN!','spinner.add_items':'Add items to spin',
+      'spinner.edit_title':'Edit Items','spinner.update':'Update Wheel','spinner.cancel':'Cancel',
+      'spinner.max_items_error':'Maximum 100 items allowed','spinner.winner_title':'Winner!','spinner.edit':'Edit','spinner.reset':'Reset',
       'dice.placeholder':'Click "Roll Dice" to start','dice.label':'Dice:','dice.total':'Total:','dice.roll':'Roll Dice',
       'coin.heads':'HEADS','coin.tails':'TAILS','coin.flip':'Flip Coin','coin.no_flips':'No flips yet','coin.clear':'Clear','coin.result_heads':'👑 HEADS','coin.result_tails':'🛡️ TAILS',
+      'coin.max_reached':'Maximum 50 flips reached. Clear history to continue.','coin.max_msg':'Clear history to continue.',
       'name.selected':'Selected Name','name.available':'available','name.no_names':'No names added yet','name.pick':'Pick Random','name.remove':'Remove picked names',
-      'color.generate':'Generate',
+      'name.edit_title':'Edit Names','name.save':'Save','name.cancel':'Cancel',
+      'name.saved_msg':'names saved!','name.max_error':'Maximum 100 names allowed',
+      'name.all_picked':'All names picked!','name.add_first':'Add names first by clicking the edit button.','name.reset_hint':'Reset the list to pick again.',
     },
     vi: {
       'nav.home':'Trang chủ','nav.card':'Bài','nav.number':'Số','nav.spinner':'Quay số',
-      'nav.more':'Thêm','nav.dice':'Xúc xắc','nav.coin':'Đồng xu','nav.name':'Tên','nav.color':'Màu sắc',
+      'nav.more':'Thêm','nav.dice':'Xúc xắc','nav.coin':'Đồng xu','nav.name':'Tên',
       'home.badge':'Công cụ miễn phí & mã nguồn mở','home.title':'Random Picker','home.subtitle':'',
       'home.desc':'Bộ sưu tập các công cụ tạo ngẫu nhiên được thiết kế đẹp mắt. Bài, số, vòng quay và nhiều hơn — tất cả trong một nơi.',
       'home.explore':'Khám phá công cụ','home.all_tools':'Tất cả công cụ','home.choose':'Chọn một công cụ và bắt đầu',
@@ -38,19 +45,26 @@
       'tool.dice.name':'Xúc xắc ngẫu nhiên','tool.dice.desc':'Lăn tối đa 6 xúc xắc với hiệu ứng lắc và tính tổng.',
       'tool.coin.name':'Tung đồng xu','tool.coin.desc':'Tung đồng xu với hiệu ứng thực tế. Theo dõi lịch sử sấp ngửa.',
       'tool.name.name':'Chọn tên ngẫu nhiên','tool.name.desc':'Chọn ngẫu nhiên một tên từ danh sách. Tự lưu với chế độ loại trừ.',
-      'tool.color.name':'Màu sắc ngẫu nhiên','tool.color.desc':'Tạo màu ngẫu nhiên với giá trị HEX & RGB. Sao chép chỉ một cú nhấp.',
       'try_now':'Thử ngay',
-      'card.placeholder':'Nhấn "Rút bài" để bắt đầu','card.cards_label':'Bài:','card.no_dup':'Không trùng lặp','card.jokers':'Joker','card.draw':'Rút bài','card.shuffle':'Xáo bài',
-      'number.placeholder':'Chưa có số nào được tạo','number.min':'Min','number.max':'Max','number.count':'Số lượng','number.no_repeat':'Không lặp lại','number.generate':'Tạo số',
+      'card.placeholder':'Nhấn "Rút bài" để bắt đầu','card.cards_label':'Bài:','card.jokers':'Joker','card.draw':'Rút bài',
+      'card.result_title':'Bài của bạn','card.result_ok':'Tuyệt!',
+      'card.suit_hearts':'Cơ','card.suit_diamonds':'Rô','card.suit_clubs':'Chuồn','card.suit_spades':'Bích',
+      'card.joker_red':'Joker (Đỏ)','card.joker_black':'Joker (Đen)',
+      'number.placeholder':'Chưa có số nào được tạo','number.min':'Min','number.max':'Max','number.count':'Số lượng','number.generate':'Tạo số',
       'spinner.winner':'Người thắng:','spinner.spin':'QUAY!','spinner.add_items':'Thêm mục để quay',
+      'spinner.edit_title':'Chỉnh sửa mục','spinner.update':'Cập nhật vòng quay','spinner.cancel':'Hủy',
+      'spinner.max_items_error':'Tối đa 100 mục','spinner.winner_title':'Người thắng!','spinner.edit':'Sửa','spinner.reset':'Đặt lại',
       'dice.placeholder':'Nhấn "Lăn xúc xắc" để bắt đầu','dice.label':'Xúc xắc:','dice.total':'Tổng:','dice.roll':'Lăn xúc xắc',
       'coin.heads':'SẤP','coin.tails':'NGỬA','coin.flip':'Tung xu','coin.no_flips':'Chưa tung lần nào','coin.clear':'Xoá','coin.result_heads':'👑 SẤP','coin.result_tails':'🛡️ NGỬA',
+      'coin.max_reached':'Đã đạt tối đa 50 lần tung. Xóa lịch sử để tiếp tục.','coin.max_msg':'Xóa lịch sử để tiếp tục.',
       'name.selected':'Tên được chọn','name.available':'khả dụng','name.no_names':'Chưa có tên nào','name.pick':'Chọn ngẫu nhiên','name.remove':'Loại bỏ tên đã chọn',
-      'color.generate':'Tạo màu',
+      'name.edit_title':'Chỉnh sửa tên','name.save':'Lưu','name.cancel':'Hủy',
+      'name.saved_msg':'tên đã lưu!','name.max_error':'Tối đa 100 tên',
+      'name.all_picked':'Đã chọn hết tên!','name.add_first':'Thêm tên bằng cách nhấn nút chỉnh sửa.','name.reset_hint':'Đặt lại danh sách để chọn lại.',
     },
     zh: {
       'nav.home':'首页','nav.card':'牌','nav.number':'数字','nav.spinner':'转盘',
-      'nav.more':'更多','nav.dice':'骰子','nav.coin':'硬币','nav.name':'名字','nav.color':'颜色',
+      'nav.more':'更多','nav.dice':'骰子','nav.coin':'硬币','nav.name':'名字',
       'home.badge':'免费开源工具','home.title':'Random Picker','home.subtitle':'',
       'home.desc':'精心设计的随机生成器工具合集。牌、数字、转盘等——尽在一处。',
       'home.explore':'探索工具','home.all_tools':'所有工具','home.choose':'选择工具开始生成',
@@ -60,15 +74,22 @@
       'tool.dice.name':'随机骰子','tool.dice.desc':'掷最多6个骰子，带摇晃动画和总数计算。',
       'tool.coin.name':'随机硬币','tool.coin.desc':'抛硬币，带真实投掷动画，追踪正反面历史。',
       'tool.name.name':'名字抽取器','tool.name.desc':'从列表中随机选取名字，自动保存并支持淘汰模式。',
-      'tool.color.name':'随机颜色','tool.color.desc':'生成带HEX和RGB值的随机颜色，一键复制。',
       'try_now':'立即使用',
-      'card.placeholder':'点击"抽牌"开始','card.cards_label':'牌数:','card.no_dup':'不重复','card.jokers':'含鬼牌','card.draw':'抽牌','card.shuffle':'洗牌',
-      'number.placeholder':'尚未生成数字','number.min':'最小值','number.max':'最大值','number.count':'数量','number.no_repeat':'不重复','number.generate':'生成',
+      'card.placeholder':'点击"抽牌"开始','card.cards_label':'牌数:','card.jokers':'含鬼牌','card.draw':'抽牌',
+      'card.result_title':'你的牌','card.result_ok':'不错!',
+      'card.suit_hearts':'红心','card.suit_diamonds':'方块','card.suit_clubs':'梅花','card.suit_spades':'黑桃',
+      'card.joker_red':'小王','card.joker_black':'大王',
+      'number.placeholder':'尚未生成数字','number.min':'最小值','number.max':'最大值','number.count':'数量','number.generate':'生成',
       'spinner.winner':'获胜者:','spinner.spin':'旋转!','spinner.add_items':'添加选项以开始旋转',
+      'spinner.edit_title':'编辑选项','spinner.update':'更新转盘','spinner.cancel':'取消',
+      'spinner.max_items_error':'最多100个选项','spinner.winner_title':'获胜者!','spinner.edit':'编辑','spinner.reset':'重置',
       'dice.placeholder':'点击"掷骰子"开始','dice.label':'骰子:','dice.total':'总计:','dice.roll':'掷骰子',
       'coin.heads':'正面','coin.tails':'反面','coin.flip':'抛硬币','coin.no_flips':'尚未抛过','coin.clear':'清除','coin.result_heads':'👑 正面','coin.result_tails':'🛡️ 反面',
+      'coin.max_reached':'已达到最大50次。请清除历史记录后继续。','coin.max_msg':'请清除历史记录后继续。',
       'name.selected':'已选名字','name.available':'可用','name.no_names':'尚未添加名字','name.pick':'随机选取','name.remove':'移除已选名字',
-      'color.generate':'生成',
+      'name.edit_title':'编辑名字','name.save':'保存','name.cancel':'取消',
+      'name.saved_msg':'个名字已保存!','name.max_error':'最多100个名字',
+      'name.all_picked':'所有名字已选完!','name.add_first':'请先点击编辑按钮添加名字。','name.reset_hint':'重置列表以重新选择。',
     }
   };
 
@@ -94,9 +115,9 @@
 
   function _updateLangDisplay() {
     const lang = localStorage.getItem('randomhub_lang') || 'en';
-    const LABELS = { en: 'EN (English)', vi: 'VI (Việt Nam)', zh: 'ZH (中文)' };
+    const SHORT = { en: 'EN', vi: 'VI', zh: 'ZH' };
     const labelEl = document.getElementById('lang-label');
-    if (labelEl) labelEl.textContent = LABELS[lang] || 'EN (English)';
+    if (labelEl) labelEl.textContent = SHORT[lang] || 'EN';
     document.querySelectorAll('[data-lang]').forEach(btn => {
       const active = btn.dataset.lang === lang;
       btn.classList.toggle('text-white',   active);
@@ -139,16 +160,19 @@ class SoundEngine {
   click() {
     if (!this.enabled) return;
     const ctx = this._getCtx();
+    const t = ctx.currentTime;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
+    osc.type = 'sine';
     osc.connect(gain);
     gain.connect(ctx.destination);
-    osc.frequency.setValueAtTime(800, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.08);
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.08);
+    osc.frequency.setValueAtTime(400, t);
+    osc.frequency.exponentialRampToValueAtTime(1200, t + 0.04);
+    osc.frequency.exponentialRampToValueAtTime(600, t + 0.08);
+    gain.gain.setValueAtTime(0.2, t);
+    gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+    osc.start(t);
+    osc.stop(t + 0.1);
   }
 
   spin() {
@@ -245,7 +269,7 @@ function getBasePath() {
   // Check if we're in a subdirectory on GitHub Pages
   const segments = path.split('/').filter(Boolean);
   // If in a tool subfolder (card/, number/, etc.), go up one level
-  const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name', 'color'];
+  const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name'];
   if (segments.length > 0 && toolFolders.includes(segments[segments.length - 1])) {
     return '../';
   }
@@ -269,37 +293,46 @@ function initHeader() {
 
   function isActive(page) {
     if (page === '' || page === 'index.html') {
-      return currentPath.endsWith('/') || currentPath.endsWith('/index.html') ||
-             currentPath === '/' ? true : false;
+      const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name'];
+      const inToolFolder = toolFolders.some(f => currentPath.includes('/' + f + '/'));
+      if (inToolFolder) return false;
+      return currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath === '/';
     }
     return currentPath.includes('/' + page);
   }
 
   const mainLinks = [
     { key: 'nav.home',    href: base,              page: '',        icon: 'fa-house' },
+  ];
+
+  const quickLinks = [
     { key: 'nav.card',    href: base + 'card/',    page: 'card',    icon: 'fa-clone' },
     { key: 'nav.number',  href: base + 'number/',  page: 'number',  icon: 'fa-hashtag' },
     { key: 'nav.spinner', href: base + 'spinner/', page: 'spinner', icon: 'fa-circle-notch' },
   ];
 
   const moreLinks = [
-    { key: 'nav.dice',  href: base + 'dice/',  page: 'dice',  icon: 'fa-dice' },
-    { key: 'nav.coin',  href: base + 'coin/',  page: 'coin',  icon: 'fa-coins' },
-    { key: 'nav.name',  href: base + 'name/',  page: 'name',  icon: 'fa-user-tag' },
-    { key: 'nav.color', href: base + 'color/', page: 'color', icon: 'fa-palette' },
+    { key: 'nav.dice',    href: base + 'dice/',    page: 'dice',    icon: 'fa-dice' },
+    { key: 'nav.coin',    href: base + 'coin/',    page: 'coin',    icon: 'fa-coins' },
+    { key: 'nav.name',    href: base + 'name/',    page: 'name',    icon: 'fa-user-tag' },
   ];
 
-  const allLinks = [...mainLinks, ...moreLinks];
+  const allLinks = [...mainLinks, ...quickLinks, ...moreLinks];
 
   const soundIcon = window.sound.enabled ? 'fa-volume-high' : 'fa-volume-xmark';
 
-  const LABELS = { en: 'EN (English)', vi: 'VI (Việt Nam)', zh: 'ZH (中文)' };
+  const SHORT_LABELS = { en: 'EN', vi: 'VI', zh: 'ZH' };
+
+  const isLg = window.innerWidth >= 1024;
+  const isMoreActive = isLg
+    ? moreLinks.some(l => isActive(l.page))
+    : [...quickLinks, ...moreLinks].some(l => isActive(l.page));
 
   root.innerHTML = `
     <header class="fixed top-0 w-full z-50 header-nav" style="background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.05);">
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <!-- Logo -->
-        <a href="${base}" class="text-xl font-bold gradient-text flex items-center gap-2">
+        <a href="${base}" class="text-xl font-bold gradient-text flex items-center gap-2 whitespace-nowrap">
           <i class="fa-solid fa-shuffle text-indigo-400"></i>
           Random Picker
         </a>
@@ -312,13 +345,25 @@ function initHeader() {
             </a>
           `).join('')}
 
+          <!-- Quick links (desktop lg+) -->
+          ${quickLinks.map(l => `
+            <a href="${l.href}" class="nav-link hidden lg:inline-flex px-3 py-2 rounded-lg text-sm font-medium ${isActive(l.page) ? 'text-white active' : 'text-slate-400 hover:text-white'}">
+              <i class="fa-solid ${l.icon} mr-1.5"></i><span data-i18n="${l.key}">${window.t(l.key)}</span>
+            </a>
+          `).join('')}
+
           <!-- More Dropdown -->
           <div class="relative" id="dropdown-container">
-            <button id="dropdown-btn" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white flex items-center gap-1.5">
+            <button id="dropdown-btn" class="px-3 py-2 rounded-lg text-sm font-medium ${isMoreActive ? 'text-white' : 'text-slate-400 hover:text-white'} flex items-center gap-1.5">
               <span data-i18n="nav.more">${window.t('nav.more')}</span> <i class="fa-solid fa-chevron-down text-xs transition-transform" id="dropdown-arrow"></i>
             </button>
             <div class="dropdown-menu absolute right-0 top-full mt-2 w-48 py-2 rounded-xl" id="dropdown-menu"
                  style="background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1);">
+              ${quickLinks.map(l => `
+                <a href="${l.href}" class="lg:hidden flex items-center gap-3 px-4 py-2.5 text-sm ${isActive(l.page) ? 'text-white bg-white/5' : 'text-slate-400 hover:text-white hover:bg-white/5'} transition-colors">
+                  <i class="fa-solid ${l.icon} w-4 text-center"></i><span data-i18n="${l.key}">${window.t(l.key)}</span>
+                </a>
+              `).join('')}
               ${moreLinks.map(l => `
                 <a href="${l.href}" class="flex items-center gap-3 px-4 py-2.5 text-sm ${isActive(l.page) ? 'text-white bg-white/5' : 'text-slate-400 hover:text-white hover:bg-white/5'} transition-colors">
                   <i class="fa-solid ${l.icon} w-4 text-center"></i><span data-i18n="${l.key}">${window.t(l.key)}</span>
@@ -335,7 +380,7 @@ function initHeader() {
           <!-- Language Dropdown -->
           <div class="relative ml-1" id="lang-dropdown-container">
             <button id="lang-dropdown-btn" class="h-9 px-2.5 rounded-lg flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-white/10 transition-all text-sm font-medium">
-              <span id="lang-label" class="text-xs">${LABELS[currentLang] || 'EN (English)'}</span>
+              <span id="lang-label" class="text-xs">${SHORT_LABELS[currentLang] || 'EN'}</span>
               <i class="fa-solid fa-chevron-down text-xs transition-transform" id="lang-dropdown-arrow"></i>
             </button>
             <div class="dropdown-menu absolute right-0 top-full mt-2 w-40 py-1 rounded-xl" id="lang-dropdown-menu"

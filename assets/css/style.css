@@ -155,7 +155,7 @@ body {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   overflow: hidden;
 }
 
@@ -452,26 +452,12 @@ body {
   font-weight: 700;
 }
 
-/* --- Color History Dot --- */
-.color-dot {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.color-dot:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-}
 
 /* --- Playing Card Styles --- */
 .playing-card {
   width: 120px;
   height: 168px;
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
@@ -481,7 +467,7 @@ body {
   height: 100%;
   object-fit: contain;
   background: white;
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
 }
 
 /* --- Name Picker Styles --- */
@@ -516,7 +502,6 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 64px;
   min-height: 0;
 }
 
@@ -527,6 +512,7 @@ body {
   justify-content: center;
   min-height: 0;
   padding: 1rem;
+  overflow-y: auto;
 }
 
 .controls-area {
@@ -539,6 +525,27 @@ body {
 .lang-active {
   background: rgba(99, 102, 241, 0.15);
   color: #fff;
+}
+
+/* --- Button Active State (override Tailwind hover) --- */
+.card-count-btn.active {
+  background-color: #4f46e5 !important;
+}
+.dice-count-btn.active {
+  background-color: #d97706 !important;
+}
+
+/* --- SweetAlert Modal Fix --- */
+.swal2-popup {
+  max-width: calc(100vw - 2rem) !important;
+}
+.swal2-textarea {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+div:where(.swal2-container) textarea:where(.swal2-textarea) {
+  margin: 0 !important;
+  width: 100% !important;
 }
 
 /* --- Responsive adjustments --- */
@@ -559,5 +566,34 @@ body {
 
   .controls-area {
     padding: 0.75rem 1rem;
+  }
+
+  /* Homepage: compact tool cards */
+  .tool-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+  .tool-card .icon-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    margin-bottom: 0;
+  }
+  .tool-card .icon-box i {
+    font-size: 1.125rem;
+  }
+  .tool-card h3 {
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+  .tool-card-desc {
+    display: none;
+  }
+  .tool-card-info {
+    flex: 1;
+    min-width: 0;
   }
 }

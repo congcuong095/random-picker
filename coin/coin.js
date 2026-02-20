@@ -3,6 +3,7 @@
    ============================================ */
 
 (function () {
+  const MAX_FLIPS = 50;
   let flipping = false;
   let history = [];
   let headsCount = 0;
@@ -15,6 +16,16 @@
 
   function flipCoin() {
     if (flipping) return;
+
+    if (history.length >= MAX_FLIPS) {
+      Swal.fire({
+        icon: 'info',
+        title: window.t('coin.max_reached'),
+        background: '#1e293b', color: '#f1f5f9'
+      });
+      return;
+    }
+
     flipping = true;
 
     window.sound.click();
@@ -49,7 +60,6 @@
 
       // Add to history
       history.unshift(result);
-      if (history.length > 10) history.pop();
 
       renderHistory();
     }, 1500);
@@ -60,15 +70,26 @@
     document.getElementById('heads-count').textContent = headsCount;
     document.getElementById('tails-count').textContent = tailsCount;
 
+    // Disable flip button and show message if max reached
+    const atMax = history.length >= MAX_FLIPS;
+    document.getElementById('flip-btn').disabled = atMax;
+    const maxMsg = document.getElementById('coin-max-msg');
+    if (atMax) {
+      maxMsg.textContent = window.t('coin.max_msg');
+      maxMsg.classList.remove('hidden');
+    } else {
+      maxMsg.classList.add('hidden');
+    }
+
     if (history.length === 0) {
-      container.innerHTML = `<p class="text-slate-500 text-sm">${window.t('coin.no_flips')}</p>`;
+      container.innerHTML = `<span class="text-slate-500 text-sm">${window.t('coin.no_flips')}</span>`;
       return;
     }
 
     container.innerHTML = history.map((h, i) => {
       const chipLabel = h === 'heads' ? window.t('coin.heads') : window.t('coin.tails');
       return `
-      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold flex-shrink-0 ${
         h === 'heads'
           ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
           : 'bg-slate-500/20 text-slate-300 border border-slate-500/30'
@@ -85,6 +106,8 @@
     tailsCount = 0;
     renderHistory();
     document.getElementById('coin-result').textContent = '';
+    document.getElementById('flip-btn').disabled = false;
+    document.getElementById('coin-max-msg').classList.add('hidden');
     window.sound.click();
   }
 })();
