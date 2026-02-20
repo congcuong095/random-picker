@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Spinner - Random Picker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎡</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };</script>
+</head>
+<body class="page-layout bg-slate-900 text-slate-100 font-sans">
+  <div id="header-root"></div>
+
+  <main>
+    <!-- Spinner Wheel (center) -->
+    <div class="result-area flex-col">
+      <div class="spinner-pointer mb-[-12px] z-10"></div>
+      <div id="canvas-container" class="w-full flex items-center justify-center" style="max-width: min(80vw, 80vh - 200px); max-height: calc(100vh - 280px);">
+        <canvas id="spinner-canvas" width="400" height="400" class="w-full rounded-full" style="filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));"></canvas>
+      </div>
+    </div>
+
+    <!-- Controls (bottom) -->
+    <div class="controls-area glass-strong">
+      <div class="max-w-2xl mx-auto space-y-2">
+        <!-- Winner display -->
+        <div id="spinner-result" class="text-center hidden">
+          <span class="text-sm text-slate-400" data-i18n="spinner.winner">Winner: </span>
+          <span class="text-lg font-bold gradient-text" id="winner-text"></span>
+        </div>
+        <!-- Buttons -->
+        <div class="flex gap-3">
+          <button id="spin-btn" class="btn-primary flex-1 justify-center py-3 text-lg">
+            <i class="fa-solid fa-rotate"></i>
+            <span data-i18n="spinner.spin">SPIN!</span>
+          </button>
+          <button id="edit-items-btn" class="btn-secondary py-3" title="Edit Items">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="spinner.js"></script>
+</body>
+</html>

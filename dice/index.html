@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Dice - Random Picker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };</script>
+</head>
+<body class="page-layout bg-slate-900 text-slate-100 font-sans">
+  <div id="header-root"></div>
+
+  <main>
+    <!-- Dice Display (center) -->
+    <div class="result-area flex-col gap-4">
+      <div id="dice-results" class="flex flex-wrap justify-center gap-6 items-center">
+        <p class="text-slate-500" data-i18n="dice.placeholder">Click "Roll Dice" to start</p>
+      </div>
+      <div id="dice-total" class="text-center hidden">
+        <div class="inline-flex items-center gap-3 px-6 py-2 rounded-xl bg-white/5 border border-white/10">
+          <span class="text-slate-400 font-medium" data-i18n="dice.total">Total:</span>
+          <span class="text-3xl font-bold gradient-text" id="total-value">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls (bottom) -->
+    <div class="controls-area glass-strong">
+      <div class="max-w-2xl mx-auto space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="text-sm text-slate-400 flex-shrink-0" data-i18n="dice.label">Dice:</span>
+          <div class="flex gap-2" id="dice-count-btns">
+            <button class="dice-count-btn active w-10 h-10 rounded-lg bg-amber-600 text-white font-bold transition-all hover:scale-105 text-sm" data-count="1">1</button>
+            <button class="dice-count-btn w-10 h-10 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="2">2</button>
+            <button class="dice-count-btn w-10 h-10 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="3">3</button>
+            <button class="dice-count-btn w-10 h-10 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="4">4</button>
+            <button class="dice-count-btn w-10 h-10 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="5">5</button>
+            <button class="dice-count-btn w-10 h-10 rounded-lg bg-white/10 text-white font-bold transition-all hover:scale-105 hover:bg-white/20 text-sm" data-count="6">6</button>
+          </div>
+        </div>
+        <button id="roll-btn" class="btn-primary w-full text-lg py-3 justify-center">
+          <i class="fa-solid fa-hand-fist"></i>
+          <span data-i18n="dice.roll">Roll Dice</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="dice.js"></script>
+</body>
+</html>

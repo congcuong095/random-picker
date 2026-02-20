@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Picker - Random Picker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };</script>
+</head>
+<body class="page-layout bg-slate-900 text-slate-100 font-sans">
+  <div id="header-root"></div>
+
+  <main>
+    <!-- Selected Name (center) -->
+    <div class="result-area flex-col gap-2">
+      <p class="text-sm text-slate-400" data-i18n="name.selected">Selected Name</p>
+      <div id="picked-name" class="text-5xl sm:text-7xl font-bold gradient-text text-center px-4">—</div>
+      <p class="text-sm text-slate-500 mt-2">
+        <span id="names-count">0/0</span> <span data-i18n="name.available">available</span>
+      </p>
+    </div>
+
+    <!-- Controls (bottom) -->
+    <div class="controls-area glass-strong">
+      <div class="max-w-2xl mx-auto space-y-3">
+        <!-- Names chips -->
+        <div id="names-chips" class="flex gap-2 overflow-x-auto pb-1 min-h-[32px] items-center">
+          <span class="text-slate-500 text-sm" data-i18n="name.no_names">No names added yet</span>
+        </div>
+        <!-- Buttons -->
+        <div class="flex gap-3">
+          <button id="pick-btn" class="btn-primary flex-1 justify-center py-3">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span data-i18n="name.pick">Pick Random</span>
+          </button>
+          <button id="edit-list-btn" class="btn-secondary py-3" title="Edit List">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+          <button id="reset-names-btn" class="btn-secondary py-3" title="Reset">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+        </div>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="remove-picked" checked class="custom-checkbox">
+          <span class="text-xs text-slate-300" data-i18n="name.remove">Remove picked names</span>
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="name.js"></script>
+</body>
+</html>

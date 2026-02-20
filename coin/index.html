@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Coin - Random Picker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪙</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };</script>
+</head>
+<body class="page-layout bg-slate-900 text-slate-100 font-sans">
+  <div id="header-root"></div>
+
+  <main>
+    <!-- Coin + Result (center) -->
+    <div class="result-area flex-col gap-4">
+      <div class="coin-container">
+        <div class="coin-inner" id="coin">
+          <div class="coin-face coin-heads">
+            <div class="flex flex-col items-center">
+              <i class="fa-solid fa-crown text-3xl mb-1"></i>
+              <span class="text-sm font-bold tracking-wider" data-i18n="coin.heads">HEADS</span>
+            </div>
+          </div>
+          <div class="coin-face coin-tails">
+            <div class="flex flex-col items-center">
+              <i class="fa-solid fa-shield-halved text-3xl mb-1"></i>
+              <span class="text-sm font-bold tracking-wider" data-i18n="coin.tails">TAILS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="coin-result" class="text-3xl font-bold h-10"></div>
+    </div>
+
+    <!-- Controls (bottom) -->
+    <div class="controls-area glass-strong">
+      <div class="max-w-2xl mx-auto space-y-3">
+        <button id="flip-btn" class="btn-primary w-full text-lg py-3 justify-center">
+          <i class="fa-solid fa-hand-pointer"></i>
+          <span data-i18n="coin.flip">Flip Coin</span>
+        </button>
+        <div class="flex items-center gap-4">
+          <div class="flex gap-2 flex-1 overflow-x-auto" id="coin-history">
+            <span class="text-slate-500 text-sm" data-i18n="coin.no_flips">No flips yet</span>
+          </div>
+          <div class="flex gap-4 flex-shrink-0 text-sm">
+            <span><span class="text-slate-400">H:</span> <span class="font-bold text-amber-400" id="heads-count">0</span></span>
+            <span><span class="text-slate-400">T:</span> <span class="font-bold text-slate-300" id="tails-count">0</span></span>
+          </div>
+          <button id="clear-history" class="text-xs text-slate-500 hover:text-slate-300 transition-colors flex-shrink-0" data-i18n="coin.clear">Clear</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="coin.js"></script>
+</body>
+</html>

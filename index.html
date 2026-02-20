@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Picker</title>
+  <meta name="description" content="A collection of random picker tools - cards, numbers, spinner, dice, coin, name picker, and color generator.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+
+  <!-- CDN Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans flex flex-col">
+
+  <!-- Header -->
+  <div id="header-root"></div>
+
+  <!-- Tools Grid -->
+  <section id="tools" class="pt-4 pb-4 px-4 flex-1">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+        <!-- Card -->
+        <a href="card/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-1">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-clone text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.card.name">Random Card</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.card.desc">Draw random cards from a standard deck. Flip animation with realistic card designs.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+        <!-- Number -->
+        <a href="number/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-2">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-hashtag text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.number.name">Random Number</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.number.desc">Generate random numbers with custom range, count, and elimination mode.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+        <!-- Spinner -->
+        <a href="spinner/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-3">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-circle-notch text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.spinner.name">Random Spinner</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.spinner.desc">Spin the wheel with custom items. Smooth easing animation with sound effects.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+        <!-- Dice -->
+        <a href="dice/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-4">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-dice text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.dice.name">Random Dice</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.dice.desc">Roll up to 6 dice with shake animation and total calculation.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+        <!-- Coin -->
+        <a href="coin/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-5">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-coins text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.coin.name">Random Coin</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.coin.desc">Flip a coin with realistic toss animation. Track your heads and tails history.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+        <!-- Name -->
+        <a href="name/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-6">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-user-tag text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.name.name">Name Picker</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.name.desc">Pick a random name from your list. Auto-save with elimination mode.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+        <!-- Color -->
+        <a href="color/" class="glass tool-card p-6 rounded-2xl cursor-pointer block reveal reveal-delay-6">
+          <div class="icon-box w-14 h-14 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-palette text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="tool.color.name">Random Color</h3>
+          <p class="text-slate-400 text-sm mb-4" data-i18n="tool.color.desc">Generate random colors with HEX & RGB values. Copy with one click.</p>
+          <span class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <span data-i18n="try_now">Try Now</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-3 px-4 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-slate-500">
+      <span>&copy; 2025 Random Picker</span>
+      <span class="text-white/20">·</span>
+      <a href="https://github.com/congcuong095/random-picker"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors">
+        <i class="fa-brands fa-github"></i>
+        GitHub
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
