@@ -37,7 +37,7 @@
       'donate.momo':'Momo','donate.momo_desc':'Vietnamese bank','donate.scan_qr':'Scan QR code to donate',
       'donate.paypal':'PayPal','donate.paypal_desc':'Visa, Mastercard','donate.open_link':'Open to donate',
       'donate.kofi':'Ko-fi','donate.kofi_desc':'Other methods',
-      'donate.popup_text':'Donate','donate.footer_link':'☕ Donate','donate.menu_btn':'Donate',
+      'donate.popup_text':'Donate','donate.footer_link':'☕ Donate','donate.menu_btn':'Donate','donate.download_qr':'Download QR',
     },
     vi: {
       'nav.home':'Trang chủ','nav.card':'Bài','nav.number':'Số','nav.spinner':'Quay số',
@@ -72,7 +72,7 @@
       'donate.momo':'Momo','donate.momo_desc':'Ngân hàng Việt Nam','donate.scan_qr':'Quét mã QR để ủng hộ',
       'donate.paypal':'PayPal','donate.paypal_desc':'Visa, Mastercard','donate.open_link':'Mở để ủng hộ',
       'donate.kofi':'Ko-fi','donate.kofi_desc':'Phương thức khác',
-      'donate.popup_text':'Ủng hộ','donate.footer_link':'☕ Ủng hộ','donate.menu_btn':'Ủng hộ',
+      'donate.popup_text':'Ủng hộ','donate.footer_link':'☕ Ủng hộ','donate.menu_btn':'Ủng hộ','donate.download_qr':'Tải QR',
     },
     zh: {
       'nav.home':'首页','nav.card':'牌','nav.number':'数字','nav.spinner':'转盘',
@@ -107,7 +107,7 @@
       'donate.momo':'Momo','donate.momo_desc':'越南银行','donate.scan_qr':'扫描二维码捐赠',
       'donate.paypal':'PayPal','donate.paypal_desc':'Visa, Mastercard','donate.open_link':'打开捐赠',
       'donate.kofi':'Ko-fi','donate.kofi_desc':'其他方式',
-      'donate.popup_text':'捐赠','donate.footer_link':'☕ 捐赠','donate.menu_btn':'捐赠',
+      'donate.popup_text':'捐赠','donate.footer_link':'☕ 捐赠','donate.menu_btn':'捐赠','donate.download_qr':'下载二维码',
     }
   };
 

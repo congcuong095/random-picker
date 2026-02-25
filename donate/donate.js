@@ -51,7 +51,8 @@
       'donate.footer_link': '☕ Donate',
       'donate.scan_qr': 'Scan QR code to donate',
       'donate.open_link': 'Open to donate',
-      'donate.menu_btn': 'Donate'
+      'donate.menu_btn': 'Donate',
+      'donate.download_qr': 'Download QR'
     };
     return fallbacks[key] || key;
   }
@@ -125,6 +126,10 @@
           <div class="donate-content-panel active" id="panel-momo">
             <div class="donate-qr-container">
               <img src="${donatePath}momo-qrcode.jpg" alt="Momo QR Code" class="donate-qr-image">
+              <a href="${donatePath}momo-qrcode.jpg" download="momo-qrcode.jpg" class="donate-download-btn">
+                <i class="fa-solid fa-download"></i>
+                ${t('donate.download_qr')}
+              </a>
             </div>
           </div>
 
