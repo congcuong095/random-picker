@@ -1,0 +1,482 @@
+/* ============================================
+   Donate Feature Styles
+   ============================================ */
+
+/* --- Donate Popup (Circular, Bottom Right Corner) --- */
+.donate-popup {
+  position: fixed;
+  bottom: 200px;
+  right: 20px;
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(139, 92, 246, 0.95));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popupSlideIn 0.5s ease-out;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.donate-popup:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.5);
+}
+
+.donate-popup-icon {
+  font-size: 36px;
+  animation: coffeeBounce 2s ease-in-out infinite;
+  line-height: 1;
+}
+
+.donate-popup-text {
+  color: white;
+  font-weight: 600;
+  font-size: 11px;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.donate-popup-close {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.donate-popup-close:hover {
+  background: rgba(239, 68, 68, 0.9);
+  transform: scale(1.1);
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes popupSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+  }
+}
+
+@keyframes coffeeBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* --- Donate Menu Button (in header) - Same style as Draw button --- */
+.donate-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.donate-menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.donate-menu-btn .coffee-icon {
+  font-size: 1rem;
+  animation: coffeeBounce 2s ease-in-out infinite;
+}
+
+/* Mobile donate button in menu - Same style as Draw button */
+.donate-mobile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  margin-top: 8px;
+}
+
+.donate-mobile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.donate-mobile-btn .coffee-icon {
+  font-size: 1.1rem;
+  animation: coffeeBounce 2s ease-in-out infinite;
+}
+
+/* --- Donate Modal Overlay --- */
+.donate-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.donate-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Donate Modal --- */
+.donate-modal {
+  position: relative;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.donate-modal-overlay.active .donate-modal {
+  transform: scale(1) translateY(0);
+}
+
+.donate-modal-header {
+  padding: 24px 24px 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.donate-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.donate-modal-message {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.donate-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donate-modal-close:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.donate-modal-body {
+  padding: 20px 24px 24px;
+  min-height: 320px;
+}
+
+/* --- Donate Method Tabs --- */
+.donate-method-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.donate-method-tab {
+  flex: 1;
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.donate-method-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.donate-method-tab.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  border-color: rgba(139, 92, 246, 0.5);
+  color: white;
+}
+
+.donate-method-tab .method-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.donate-method-tab .method-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.donate-method-tab .method-desc {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.donate-method-tab.active .method-desc {
+  color: #a5b4fc;
+}
+
+/* --- Donate Content Panels --- */
+.donate-content-panel {
+  display: none;
+  width: 100%;
+}
+
+.donate-content-panel.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+}
+
+/* --- Momo QR Code --- */
+.donate-qr-container {
+  text-align: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+.donate-qr-image {
+  max-width: 200px;
+  max-height: 160px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 12px;
+}
+
+.donate-method-desc {
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+.donate-method-desc i {
+  margin-right: 6px;
+}
+
+/* --- PayPal & Ko-fi Buttons --- */
+.donate-link-container {
+  text-align: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+
+.donate-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.donate-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.donate-link-btn .btn-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.donate-link-btn.paypal {
+  background: linear-gradient(135deg, #0070ba, #1546a0);
+  color: white;
+}
+
+.donate-link-btn.kofi {
+  background: linear-gradient(135deg, #ff5e5b, #ff4040);
+  color: white;
+}
+
+.donate-link-btn i {
+  font-size: 1.2rem;
+}
+
+/* --- Footer Donate Link --- */
+.donate-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fbbf24;
+  transition: color 0.2s ease;
+}
+
+.donate-footer-link:hover {
+  color: #f59e0b;
+}
+
+/* --- Responsive --- */
+@media (min-width: 1028px) {
+  .donate-popup {
+    right: calc((100vw - 1280px) / 2 + 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .donate-popup {
+    bottom: 140px;
+    right: 16px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .donate-popup-icon {
+    font-size: 30px;
+  }
+
+  .donate-popup-text {
+    font-size: 10px;
+  }
+
+  .donate-modal {
+    border-radius: 16px;
+    margin: 10px;
+  }
+
+  .donate-modal-header {
+    padding: 20px 20px 12px;
+  }
+
+  .donate-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .donate-modal-body {
+    padding: 16px 20px 20px;
+  }
+
+  .donate-method-tabs {
+    gap: 6px;
+  }
+
+  .donate-method-tab {
+    padding: 10px 6px;
+    font-size: 0.8rem;
+  }
+
+  .donate-method-tab i {
+    font-size: 1.25rem;
+  }
+
+  .donate-qr-image {
+    max-width: 180px;
+  }
+}

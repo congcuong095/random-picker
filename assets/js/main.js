@@ -32,6 +32,12 @@
       'name.edit_title':'Edit Names','name.save':'Save','name.cancel':'Cancel',
       'name.saved_msg':'names saved!','name.max_error':'Maximum 100 names allowed',
       'name.all_picked':'All names picked!','name.add_first':'Add names first by clicking the edit button.','name.reset_hint':'Reset the list to pick again.',
+      // Donate translations
+      'donate.title':'Buy me a coffee','donate.message':'Enjoying this tool? Support its development with a coffee!',
+      'donate.momo':'Momo','donate.momo_desc':'Vietnamese bank','donate.scan_qr':'Scan QR code to donate',
+      'donate.paypal':'PayPal','donate.paypal_desc':'Visa, Mastercard','donate.open_link':'Open to donate',
+      'donate.kofi':'Ko-fi','donate.kofi_desc':'Other methods',
+      'donate.popup_text':'Donate','donate.footer_link':'☕ Donate','donate.menu_btn':'Donate',
     },
     vi: {
       'nav.home':'Trang chủ','nav.card':'Bài','nav.number':'Số','nav.spinner':'Quay số',
@@ -61,6 +67,12 @@
       'name.edit_title':'Chỉnh sửa tên','name.save':'Lưu','name.cancel':'Hủy',
       'name.saved_msg':'tên đã lưu!','name.max_error':'Tối đa 100 tên',
       'name.all_picked':'Đã chọn hết tên!','name.add_first':'Thêm tên bằng cách nhấn nút chỉnh sửa.','name.reset_hint':'Đặt lại danh sách để chọn lại.',
+      // Donate translations
+      'donate.title':'Mời tôi ly cà phê','donate.message':'Bạn thấy công cụ này hữu ích? Hãy ủng hộ tác giả một ly cà phê!',
+      'donate.momo':'Momo','donate.momo_desc':'Ngân hàng Việt Nam','donate.scan_qr':'Quét mã QR để ủng hộ',
+      'donate.paypal':'PayPal','donate.paypal_desc':'Visa, Mastercard','donate.open_link':'Mở để ủng hộ',
+      'donate.kofi':'Ko-fi','donate.kofi_desc':'Phương thức khác',
+      'donate.popup_text':'Ủng hộ','donate.footer_link':'☕ Ủng hộ','donate.menu_btn':'Ủng hộ',
     },
     zh: {
       'nav.home':'首页','nav.card':'牌','nav.number':'数字','nav.spinner':'转盘',
@@ -90,6 +102,12 @@
       'name.edit_title':'编辑名字','name.save':'保存','name.cancel':'取消',
       'name.saved_msg':'个名字已保存!','name.max_error':'最多100个名字',
       'name.all_picked':'所有名字已选完!','name.add_first':'请先点击编辑按钮添加名字。','name.reset_hint':'重置列表以重新选择。',
+      // Donate translations
+      'donate.title':'请我喝杯咖啡','donate.message':'喜欢这个工具？请我喝杯咖啡支持开发',
+      'donate.momo':'Momo','donate.momo_desc':'越南银行','donate.scan_qr':'扫描二维码捐赠',
+      'donate.paypal':'PayPal','donate.paypal_desc':'Visa, Mastercard','donate.open_link':'打开捐赠',
+      'donate.kofi':'Ko-fi','donate.kofi_desc':'其他方式',
+      'donate.popup_text':'捐赠','donate.footer_link':'☕ 捐赠','donate.menu_btn':'捐赠',
     }
   };
 
