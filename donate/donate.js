@@ -17,8 +17,8 @@
   function getDonateBasePath() {
     const path = window.location.pathname;
     const segments = path.split('/').filter(Boolean);
-    const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name'];
-    
+    const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name', 'oracle'];
+
     // If in a tool subfolder, go up one level
     if (segments.length > 0 && toolFolders.includes(segments[segments.length - 1])) {
       return '../donate/';

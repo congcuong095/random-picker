@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Decision Oracle - Random Picker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="oracle.css">
+  <link rel="stylesheet" href="../donate/donate.css">
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };</script>
+</head>
+<body class="page-layout bg-slate-900 text-slate-100 font-sans">
+
+  <!-- Ambient background layer (sits behind everything, z-index 0) -->
+  <div id="oracle-bg" aria-hidden="true">
+    <div class="oracle-blob oracle-blob--gold"></div>
+    <div class="oracle-blob oracle-blob--purple"></div>
+    <canvas id="oracle-particles"></canvas>
+  </div>
+
+  <!-- Shared header (injected by main.js) -->
+  <div id="header-root"></div>
+
+  <main>
+    <!-- Zone 1 — Oracle Stage (result-area) -->
+    <div class="result-area flex-col gap-4">
+
+      <!-- God Sigil: animated focal point -->
+      <div class="oracle-sigil-wrap" id="oracle-sigil-wrap" aria-hidden="true">
+        <div class="oracle-sigil" id="oracle-sigil">
+          <div class="oracle-sigil__ring oracle-sigil__ring--outer"></div>
+          <div class="oracle-sigil__ring oracle-sigil__ring--inner"></div>
+          <div class="oracle-sigil__icon" id="oracle-sigil-icon">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idle tagline (visible when no answer is shown) -->
+      <p id="oracle-tagline" class="text-slate-500 text-sm italic text-center px-4" data-i18n="oracle.tagline">
+        Ask the oracle anything…
+      </p>
+
+      <!-- Question echo: shows user's question during / after summoning -->
+      <div id="oracle-question-echo" class="oracle-question-echo hidden" aria-live="polite"></div>
+
+      <!-- Answer card: hidden until REVEAL phase -->
+      <div id="oracle-answer-card" class="oracle-answer-card glass hidden" role="region" aria-label="Oracle answer" aria-live="assertive">
+        <!-- FIX: BUG-003 — oracle name/title header required by AC-04.7 -->
+        <p class="oracle-oracle-name text-xs font-semibold tracking-widest text-slate-500 uppercase mb-2"
+           data-i18n="tool.oracle.name">Decision Oracle</p>
+        <div id="oracle-answer-category" class="oracle-category-chip" aria-label="Answer category"></div>
+        <p id="oracle-answer-text" class="oracle-answer-card__text"></p>
+        <!-- Copy button appears after reveal -->
+        <div class="oracle-result-actions" id="oracle-result-actions">
+          <button id="oracle-copy-btn" class="btn-secondary text-sm py-1 px-2" aria-label="Copy answer">
+            <i class="fa-solid fa-copy"></i>
+            <span data-i18n="oracle.copy_btn">Copy Answer</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Zone 2 — Controls (bottom glass bar) -->
+    <div class="controls-area glass-strong">
+      <div class="max-w-2xl mx-auto space-y-3">
+
+        <!-- Preset question chips (horizontally scrollable) -->
+        <div class="oracle-presets" role="list" aria-label="Preset questions">
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.eat"      role="listitem">Should I eat now?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.go_out"   role="listitem">Should I go out today?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.sleep"    role="listitem">Should I sleep early?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.lucky"    role="listitem">Is today my lucky day?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.risk"     role="listitem">Should I take the risk?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.wait"     role="listitem">Should I wait or act?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.call"     role="listitem">Should I make the call?</button>
+          <button class="oracle-preset-chip" data-i18n="oracle.preset.buy"      role="listitem">Should I buy it?</button>
+        </div>
+
+        <!-- Question text input + character counter -->
+        <div class="oracle-input-wrap">
+          <input
+            id="oracle-question-input"
+            type="text"
+            class="input-field oracle-question-input"
+            maxlength="200"
+            autocomplete="off"
+            aria-label="Your question for the oracle"
+          >
+          <span id="oracle-char-count" class="oracle-char-count" aria-hidden="true">0 / 200</span>
+        </div>
+
+        <!-- Action buttons row -->
+        <div class="flex gap-2">
+          <!-- Main ask/summon button -->
+          <button id="oracle-ask-btn" class="btn-primary oracle-ask-btn flex-1 text-base py-3 justify-center" aria-label="Summon the oracle">
+            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            <span id="oracle-ask-label" data-i18n="oracle.summon_btn">Summon</span>
+          </button>
+
+          <!-- History icon button -->
+          <button id="oracle-history-btn" class="btn-secondary oracle-icon-btn" aria-label="View history">
+            <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Load order: main.js → oracle-i18n.js → oracle.js → donate.js -->
+  <script src="../assets/js/main.js"></script>
+  <script src="oracle-i18n.js"></script>
+  <script src="oracle.js"></script>
+  <script src="../donate/donate.js"></script>
+</body>
+</html>

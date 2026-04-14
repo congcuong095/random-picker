@@ -1,0 +1,645 @@
+/* ============================================
+   Oracle — Tool-specific Styles
+   Vị Thần Quyết Định (The Decision Oracle)
+   ============================================ */
+
+/* Override: allow inner horizontal scroll containers (body overflow-x:hidden blocks them on iOS) */
+body {
+  overflow-x: clip;
+}
+
+/* ── CSS Custom Properties ─────────────────── */
+:root {
+  --oracle-gold:           #f59e0b;
+  --oracle-gold-light:     #fcd34d;
+  --oracle-gold-glow:      rgba(245, 158, 11, 0.45);
+  --oracle-purple-deep:    #4c1d95;
+  --oracle-purple-mid:     #7c3aed;
+  --oracle-purple-bright:  #a78bfa;
+  --oracle-sigil-gradient: linear-gradient(135deg, #f59e0b, #a855f7, #6366f1);
+
+  /* Answer category accent colors */
+  --oracle-yes-color:      #f59e0b;
+  --oracle-yes-bg:         rgba(245, 158, 11, 0.15);
+  --oracle-yes-border:     rgba(245, 158, 11, 0.40);
+
+  --oracle-no-color:       #ef4444;
+  --oracle-no-bg:          rgba(239, 68, 68, 0.15);
+  --oracle-no-border:      rgba(239, 68, 68, 0.40);
+
+  --oracle-maybe-color:    #94a3b8;
+  --oracle-maybe-bg:       rgba(148, 163, 184, 0.12);
+  --oracle-maybe-border:   rgba(148, 163, 184, 0.35);
+
+  --oracle-ominous-color:  #c084fc;
+  --oracle-ominous-bg:     rgba(192, 132, 252, 0.12);
+  --oracle-ominous-border: rgba(192, 132, 252, 0.40);
+}
+
+/* ── Keyframe Animations ────────────────────── */
+
+/* Ring continuous spin (used infinite) */
+@keyframes oracleRingRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Sigil scale + glow during summoning phase */
+@keyframes oracleSummon {
+  0%   { transform: scale(1);    box-shadow: 0 0 20px var(--oracle-gold-glow); }
+  30%  { transform: scale(1.12); box-shadow: 0 0 60px var(--oracle-gold-glow), 0 0 80px rgba(168, 85, 247, 0.3); }
+  60%  { transform: scale(1.08); box-shadow: 0 0 40px var(--oracle-gold-glow); }
+  100% { transform: scale(1.15); box-shadow: 0 0 80px var(--oracle-gold-glow), 0 0 120px rgba(168, 85, 247, 0.4); }
+}
+
+/* Quick scale burst at reveal moment */
+@keyframes oracleRevealFlash {
+  0%   { transform: scale(1.15); }
+  40%  { transform: scale(1.4);  box-shadow: 0 0 120px rgba(245, 158, 11, 0.8), 0 0 60px rgba(255,255,255,0.4); }
+  70%  { transform: scale(0.9);  }
+  100% { transform: scale(1);    }
+}
+
+/* Gentle ambient pulse in RESULT state */
+@keyframes oracleIdlePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px var(--oracle-gold-glow);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px var(--oracle-gold-glow), 0 0 60px rgba(168, 85, 247, 0.25);
+  }
+}
+
+/* Answer text fade-in reveal (letter-spacing removed to avoid reflow-flicker) */
+@keyframes oracleTextReveal {
+  0%   { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Answer card border glow (category colored — set via inline CSS var) */
+@keyframes oracleCardBorderGlow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--card-border-color, rgba(245,158,11,0.4)); }
+  50%       { box-shadow: 0 0 20px 2px var(--card-glow-color, rgba(245,158,11,0.25)); }
+}
+
+/* Ambient background blob drift */
+@keyframes oracleBlobDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* Input shake on empty submission */
+@keyframes oracleInputShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+
+/* Category chip entrance */
+@keyframes oracleChipIn {
+  0%   { opacity: 0; transform: scale(0.8) translateY(8px); }
+  100% { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+/* ── Ambient Background ─────────────────────── */
+
+#oracle-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.oracle-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.oracle-blob--gold {
+  width: 280px;
+  height: 280px;
+  background: #f59e0b;
+  top: -80px;
+  left: -80px;
+  animation: oracleBlobDrift 10s ease-in-out infinite alternate;
+}
+
+.oracle-blob--purple {
+  width: 320px;
+  height: 320px;
+  background: #7c3aed;
+  bottom: -100px;
+  right: -100px;
+  animation: oracleBlobDrift 13s ease-in-out infinite alternate-reverse;
+}
+
+#oracle-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ── Oracle Sigil ───────────────────────────── */
+
+.oracle-sigil-wrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.oracle-sigil {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+  will-change: transform, box-shadow;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Outer ring — dashed gold, slow clockwise */
+.oracle-sigil__ring--outer {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 2px dashed var(--oracle-gold);
+  opacity: 0.7;
+  animation: oracleRingRotate 8s linear infinite;
+  will-change: transform;
+}
+
+/* Inner ring — solid purple, counter-clockwise */
+.oracle-sigil__ring--inner {
+  position: absolute;
+  width: 114px;
+  height: 114px;
+  border-radius: 50%;
+  border: 1px solid var(--oracle-purple-bright);
+  opacity: 0.6;
+  animation: oracleRingRotate 5s linear infinite reverse;
+  will-change: transform;
+}
+
+/* Icon — eye of god */
+.oracle-sigil__icon {
+  font-size: 2.5rem;
+  color: var(--oracle-gold);
+  text-shadow: 0 0 20px var(--oracle-gold-glow);
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* SUMMONING phase */
+.oracle-sigil--summoning {
+  animation: oracleSummon 1.8s ease-in-out forwards;
+}
+
+.oracle-sigil--summoning .oracle-sigil__ring--outer {
+  animation-duration: 2s;
+  opacity: 1;
+  border-color: var(--oracle-gold-light);
+}
+
+.oracle-sigil--summoning .oracle-sigil__ring--inner {
+  animation-duration: 1.2s;
+  opacity: 0.9;
+  border-color: #fff;
+}
+
+.oracle-sigil--summoning .oracle-sigil__icon {
+  opacity: 0.5;
+  transform: scale(1.2);
+}
+
+/* REVEAL phase */
+.oracle-sigil--reveal {
+  animation: oracleRevealFlash 0.5s ease-out forwards;
+}
+
+/* RESULT phase — ambient idle */
+.oracle-sigil--result {
+  animation: oracleIdlePulse 3s ease-in-out infinite;
+}
+
+/* ── Question Echo ──────────────────────────── */
+
+.oracle-question-echo {
+  font-size: 0.95rem;
+  color: rgba(148, 163, 184, 0.9);
+  font-style: italic;
+  text-align: center;
+  max-width: 340px;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  animation: oracleChipIn 0.4s ease-out forwards;
+}
+
+/* ── Answer Card ────────────────────────────── */
+
+.oracle-answer-card {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  /* default border — overridden by category modifier */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: oracleCardBorderGlow 2s ease-in-out infinite;
+}
+
+/* Category modifier classes */
+.oracle-answer-card--yes {
+  --card-border-color: var(--oracle-yes-border);
+  --card-glow-color:   rgba(245, 158, 11, 0.2);
+  background: var(--oracle-yes-bg);
+  border-color: var(--oracle-yes-border);
+}
+
+.oracle-answer-card--no {
+  --card-border-color: var(--oracle-no-border);
+  --card-glow-color:   rgba(239, 68, 68, 0.2);
+  background: var(--oracle-no-bg);
+  border-color: var(--oracle-no-border);
+}
+
+.oracle-answer-card--maybe {
+  --card-border-color: var(--oracle-maybe-border);
+  --card-glow-color:   rgba(148, 163, 184, 0.15);
+  background: var(--oracle-maybe-bg);
+  border-color: var(--oracle-maybe-border);
+}
+
+.oracle-answer-card--ominous {
+  --card-border-color: var(--oracle-ominous-border);
+  --card-glow-color:   rgba(192, 132, 252, 0.2);
+  background: var(--oracle-ominous-bg);
+  border-color: var(--oracle-ominous-border);
+}
+
+/* Category chip */
+.oracle-category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  animation: oracleChipIn 0.3s ease-out 0.1s both;
+}
+
+.oracle-category-chip--yes {
+  background: var(--oracle-yes-bg);
+  color: var(--oracle-yes-color);
+  border: 1px solid var(--oracle-yes-border);
+}
+
+.oracle-category-chip--no {
+  background: var(--oracle-no-bg);
+  color: var(--oracle-no-color);
+  border: 1px solid var(--oracle-no-border);
+}
+
+.oracle-category-chip--maybe {
+  background: var(--oracle-maybe-bg);
+  color: var(--oracle-maybe-color);
+  border: 1px solid var(--oracle-maybe-border);
+}
+
+.oracle-category-chip--ominous {
+  background: var(--oracle-ominous-bg);
+  color: var(--oracle-ominous-color);
+  border: 1px solid var(--oracle-ominous-border);
+}
+
+/* Answer text */
+.oracle-answer-card__text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  animation: oracleTextReveal 0.6s ease-out forwards;
+}
+
+/* Result action buttons row */
+.oracle-result-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Controls Area ──────────────────────────── */
+
+/* Preset question chips — horizontal scroll row */
+.oracle-presets {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  /* Enable touch scrolling on iOS */
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+  /* Desktop: hint that the row is draggable */
+  cursor: grab;
+  /* Visible thin scrollbar so users know the row is scrollable */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.4) transparent;
+}
+
+.oracle-presets::-webkit-scrollbar {
+  height: 6px;
+}
+
+.oracle-presets::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 3px;
+}
+
+.oracle-presets::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 3px;
+}
+
+.oracle-presets::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.6);
+}
+
+.oracle-preset-chip {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--oracle-purple-bright);
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.oracle-preset-chip:hover {
+  background: rgba(124, 58, 237, 0.25);
+  border-color: rgba(124, 58, 237, 0.5);
+  transform: translateY(-1px);
+}
+
+.oracle-preset-chip:active {
+  transform: translateY(0);
+}
+
+/* Question input wrapper (character counter positioning) */
+.oracle-input-wrap {
+  position: relative;
+}
+
+.oracle-char-count {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.6rem;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.oracle-char-count--limit {
+  color: #ef4444;
+}
+
+/* Slight right padding on input to not overlap counter */
+.oracle-question-input {
+  padding-right: 4.5rem;
+}
+
+/* Input shake on empty submit */
+.oracle-input-shake {
+  animation: oracleInputShake 0.4s ease-in-out;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+/* Ask button — special gold/purple gradient override */
+.oracle-ask-btn {
+  background: linear-gradient(135deg, #d97706, #9333ea);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.oracle-ask-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(217, 119, 6, 0.4), 0 4px 15px rgba(147, 51, 234, 0.3);
+}
+
+.oracle-ask-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Icon-only secondary buttons */
+.oracle-icon-btn {
+  padding: 0.75rem;
+  min-width: 2.75rem;
+  justify-content: center;
+}
+
+/* Share / history buttons — disabled state */
+.oracle-icon-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── History Popup (Swal custom) ────────────── */
+
+.oracle-history-popup {
+  max-height: 90vh;
+}
+
+.oracle-history-list {
+  max-height: 55vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.4) transparent;
+}
+
+.oracle-history-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.oracle-history-question {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oracle-history-answer {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: 0.2rem 0 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.oracle-history-ts {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.oracle-history-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.oracle-history-reask {
+  background: none;
+  border: none;
+  color: var(--oracle-purple-bright);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.35rem;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.oracle-history-reask:hover {
+  background: rgba(167, 139, 250, 0.15);
+}
+
+.oracle-history-footer {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* ── Responsive ─────────────────────────────── */
+
+/* Mobile: smaller sigil */
+@media (max-width: 639px) {
+  .oracle-sigil-wrap {
+    width: 130px;
+    height: 130px;
+  }
+
+  .oracle-sigil {
+    width: 120px;
+    height: 120px;
+  }
+
+  .oracle-sigil__ring--outer {
+    width: 120px;
+    height: 120px;
+  }
+
+  .oracle-sigil__ring--inner {
+    width: 86px;
+    height: 86px;
+  }
+
+  .oracle-sigil__icon {
+    font-size: 1.9rem;
+  }
+
+  .oracle-answer-card {
+    max-width: 100%;
+  }
+
+  .oracle-answer-card__text {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .oracle-sigil-wrap {
+    width: 160px;
+    height: 160px;
+  }
+
+  .oracle-sigil {
+    width: 148px;
+    height: 148px;
+  }
+
+  .oracle-sigil__ring--outer {
+    width: 148px;
+    height: 148px;
+  }
+
+  .oracle-sigil__ring--inner {
+    width: 106px;
+    height: 106px;
+  }
+}
+
+/* ── Reduced Motion ─────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .oracle-sigil__ring--outer,
+  .oracle-sigil__ring--inner,
+  .oracle-blob--gold,
+  .oracle-blob--purple {
+    animation: none;
+  }
+
+  .oracle-sigil--summoning,
+  .oracle-sigil--reveal,
+  .oracle-sigil--result {
+    animation: none;
+  }
+
+  .oracle-answer-card__text {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .oracle-category-chip {
+    animation: none;
+    opacity: 1;
+  }
+
+  .oracle-question-echo {
+    animation: none;
+    opacity: 1;
+  }
+}

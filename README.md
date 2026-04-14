@@ -15,6 +15,7 @@ A collection of fun, interactive random picker tools built with vanilla HTML, CS
 | **Random Coin** | Flip a coin with realistic toss animation and history tracking |
 | **Name Picker** | Pick a random name from your list with auto-save and elimination mode |
 | **Random Color** | Generate random colors with HEX & RGB values, copy with one click |
+| **Decision Oracle** | Ask the mystical oracle a yes/no question and receive a dramatic divine verdict |
 
 ## Tech Stack
 
@@ -38,7 +39,8 @@ random-web/
 ├── dice/               # Random Dice tool
 ├── coin/               # Random Coin tool
 ├── name/               # Name Picker tool
-└── color/              # Random Color tool
+├── color/              # Random Color tool
+└── oracle/             # Decision Oracle tool
 ```
 
 ## Getting Started

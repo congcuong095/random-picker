@@ -15,6 +15,7 @@
       'tool.spinner.name':'Random Spinner','tool.spinner.desc':'Spin the wheel with custom items. Smooth easing animation with sound effects.',
       'tool.dice.name':'Random Dice','tool.dice.desc':'Roll up to 6 dice with shake animation and total calculation.',
       'tool.coin.name':'Random Coin','tool.coin.desc':'Flip a coin with realistic toss animation. Track your heads and tails history.',
+      'tool.oracle.name':'Decision Oracle','tool.oracle.desc':'Ask the oracle a yes/no question and receive a mystical answer with a ritual.',
       'tool.name.name':'Name Picker','tool.name.desc':'Pick a random name from your list. Auto-save with elimination mode.',
       'try_now':'Try Now',
       'card.placeholder':'Click "Draw Cards" to start','card.cards_label':'Cards:','card.jokers':'Jokers','card.draw':'Draw Cards',
@@ -32,6 +33,22 @@
       'name.edit_title':'Edit Names','name.save':'Save','name.cancel':'Cancel',
       'name.saved_msg':'names saved!','name.max_error':'Maximum 100 names allowed',
       'name.all_picked':'All names picked!','name.add_first':'Add names first by clicking the edit button.','name.reset_hint':'Reset the list to pick again.',
+      // Oracle translations (mystical answer pool lives in oracle/oracle-i18n.js)
+      'nav.oracle':'Oracle',
+      'oracle.tagline':'Ask the oracle anything…','oracle.placeholder':'Ask your question, mortal...',
+      'oracle.summon_btn':'Summon','oracle.ask_again':'Ask Again','oracle.ask':'Ask the Oracle',
+      'oracle.summoning':'The god awakens...','oracle.thinking':'Reading the threads of fate...',
+      'oracle.copy_btn':'Copy Answer',
+      'oracle.history_title':'Your Questions','oracle.history':'History','oracle.history_empty':'No questions asked yet',
+      'oracle.history_clear':'Clear History','oracle.history_clear_confirm':'Clear all oracle history?',
+      'oracle.history_clear_yes':'Yes, clear it','oracle.history_clear_no':'Cancel',
+      'oracle.empty_question':'Please ask a question first.','oracle.copied':'Copied to clipboard',
+      'oracle.copy_template':'Question: {q}\nOracle: {a}',
+      'oracle.cat_yes':'YES','oracle.cat_no':'NO','oracle.cat_maybe':'MAYBE','oracle.cat_ominous':'THE FATES ARE SILENT',
+      'oracle.preset.eat':'Should I eat now?','oracle.preset.go_out':'Should I go out today?',
+      'oracle.preset.sleep':'Should I sleep early tonight?','oracle.preset.lucky':'Is today my lucky day?',
+      'oracle.preset.risk':'Should I take the risk?','oracle.preset.wait':'Should I wait or act now?',
+      'oracle.preset.call':'Should I make the call?','oracle.preset.buy':'Should I buy it?',
       // Donate translations
       'donate.title':'Buy me a coffee','donate.message':'Enjoying this tool? Support its development with a coffee!',
       'donate.momo':'Momo','donate.momo_desc':'Vietnamese bank','donate.scan_qr':'Scan QR code to donate',
@@ -50,6 +67,7 @@
       'tool.spinner.name':'Vòng quay may mắn','tool.spinner.desc':'Quay vòng với các mục tuỳ chỉnh. Hiệu ứng mượt mà cùng âm thanh.',
       'tool.dice.name':'Xúc xắc ngẫu nhiên','tool.dice.desc':'Lăn tối đa 6 xúc xắc với hiệu ứng lắc và tính tổng.',
       'tool.coin.name':'Tung đồng xu','tool.coin.desc':'Tung đồng xu với hiệu ứng thực tế. Theo dõi lịch sử sấp ngửa.',
+      'tool.oracle.name':'Vị Thần Quyết Định','tool.oracle.desc':'Hỏi vị thần một câu yes/no và nhận câu trả lời huyền bí qua nghi thức.',
       'tool.name.name':'Chọn tên ngẫu nhiên','tool.name.desc':'Chọn ngẫu nhiên một tên từ danh sách. Tự lưu với chế độ loại trừ.',
       'try_now':'Thử ngay',
       'card.placeholder':'Nhấn "Rút bài" để bắt đầu','card.cards_label':'Bài:','card.jokers':'Joker','card.draw':'Rút bài',
@@ -67,6 +85,22 @@
       'name.edit_title':'Chỉnh sửa tên','name.save':'Lưu','name.cancel':'Hủy',
       'name.saved_msg':'tên đã lưu!','name.max_error':'Tối đa 100 tên',
       'name.all_picked':'Đã chọn hết tên!','name.add_first':'Thêm tên bằng cách nhấn nút chỉnh sửa.','name.reset_hint':'Đặt lại danh sách để chọn lại.',
+      // Oracle translations (kho câu trả lời huyền bí nằm ở oracle/oracle-i18n.js)
+      'nav.oracle':'Quyết định',
+      'oracle.tagline':'Hãy hỏi thần bất cứ điều gì…','oracle.placeholder':'Hãy đặt câu hỏi của ngươi...',
+      'oracle.summon_btn':'Triệu Hồi','oracle.ask_again':'Hỏi lại','oracle.ask':'Hỏi Thần',
+      'oracle.summoning':'Thần đang thức dậy...','oracle.thinking':'Đọc sợi chỉ số phận...',
+      'oracle.copy_btn':'Sao chép',
+      'oracle.history_title':'Câu hỏi của bạn','oracle.history':'Lịch sử','oracle.history_empty':'Chưa có câu hỏi nào',
+      'oracle.history_clear':'Xóa lịch sử','oracle.history_clear_confirm':'Xóa toàn bộ lịch sử phán quyết?',
+      'oracle.history_clear_yes':'Có, xóa đi','oracle.history_clear_no':'Hủy',
+      'oracle.empty_question':'Vui lòng nhập câu hỏi trước.','oracle.copied':'Đã sao chép',
+      'oracle.copy_template':'Câu hỏi: {q}\nThần phán: {a}',
+      'oracle.cat_yes':'CÓ','oracle.cat_no':'KHÔNG','oracle.cat_maybe':'CÓ THỂ','oracle.cat_ominous':'VẬN MỆNH IM LẶNG',
+      'oracle.preset.eat':'Tôi có nên ăn bây giờ không?','oracle.preset.go_out':'Tôi có nên ra ngoài hôm nay không?',
+      'oracle.preset.sleep':'Tôi có nên ngủ sớm tối nay không?','oracle.preset.lucky':'Hôm nay có phải ngày may mắn của tôi không?',
+      'oracle.preset.risk':'Tôi có nên liều không?','oracle.preset.wait':'Tôi nên chờ hay hành động ngay?',
+      'oracle.preset.call':'Tôi có nên gọi điện không?','oracle.preset.buy':'Tôi có nên mua không?',
       // Donate translations
       'donate.title':'Mời tôi ly cà phê','donate.message':'Bạn thấy công cụ này hữu ích? Hãy ủng hộ tác giả một ly cà phê!',
       'donate.momo':'Momo','donate.momo_desc':'Ngân hàng Việt Nam','donate.scan_qr':'Quét mã QR để ủng hộ',
@@ -85,6 +119,7 @@
       'tool.spinner.name':'随机转盘','tool.spinner.desc':'使用自定义选项旋转转盘，流畅缓动动画配音效。',
       'tool.dice.name':'随机骰子','tool.dice.desc':'掷最多6个骰子，带摇晃动画和总数计算。',
       'tool.coin.name':'随机硬币','tool.coin.desc':'抛硬币，带真实投掷动画，追踪正反面历史。',
+      'tool.oracle.name':'决策神谕','tool.oracle.desc':'向神谕提出一个是/否问题，通过动画仪式获得神秘答案。',
       'tool.name.name':'名字抽取器','tool.name.desc':'从列表中随机选取名字，自动保存并支持淘汰模式。',
       'try_now':'立即使用',
       'card.placeholder':'点击"抽牌"开始','card.cards_label':'牌数:','card.jokers':'含鬼牌','card.draw':'抽牌',
@@ -102,6 +137,22 @@
       'name.edit_title':'编辑名字','name.save':'保存','name.cancel':'取消',
       'name.saved_msg':'个名字已保存!','name.max_error':'最多100个名字',
       'name.all_picked':'所有名字已选完!','name.add_first':'请先点击编辑按钮添加名字。','name.reset_hint':'重置列表以重新选择。',
+      // Oracle translations (神秘答案库位于 oracle/oracle-i18n.js)
+      'nav.oracle':'决定',
+      'oracle.tagline':'向神明询问任何问题…','oracle.placeholder':'凡人，提出你的问题...',
+      'oracle.summon_btn':'召唤','oracle.ask_again':'再问一次','oracle.ask':'问神谕',
+      'oracle.summoning':'神正在苏醒...','oracle.thinking':'读取命运之线...',
+      'oracle.copy_btn':'复制答案',
+      'oracle.history_title':'你的问题','oracle.history':'历史','oracle.history_empty':'尚未提问',
+      'oracle.history_clear':'清除历史','oracle.history_clear_confirm':'清除所有神谕历史？',
+      'oracle.history_clear_yes':'是的，清除','oracle.history_clear_no':'取消',
+      'oracle.empty_question':'请先输入问题。','oracle.copied':'已复制到剪贴板',
+      'oracle.copy_template':'问题：{q}\n神谕：{a}',
+      'oracle.cat_yes':'是','oracle.cat_no':'否','oracle.cat_maybe':'也许','oracle.cat_ominous':'命运沉默',
+      'oracle.preset.eat':'我现在应该吃东西吗？','oracle.preset.go_out':'我今天应该出门吗？',
+      'oracle.preset.sleep':'我今晚应该早睡吗？','oracle.preset.lucky':'今天是我的幸运日吗？',
+      'oracle.preset.risk':'我应该冒这个险吗？','oracle.preset.wait':'我应该等待还是立即行动？',
+      'oracle.preset.call':'我应该打这个电话吗？','oracle.preset.buy':'我应该买吗？',
       // Donate translations
       'donate.title':'请我喝杯咖啡','donate.message':'喜欢这个工具？请我喝杯咖啡支持开发',
       'donate.momo':'Momo','donate.momo_desc':'越南银行','donate.scan_qr':'扫描二维码捐赠',
@@ -287,7 +338,7 @@ function getBasePath() {
   // Check if we're in a subdirectory on GitHub Pages
   const segments = path.split('/').filter(Boolean);
   // If in a tool subfolder (card/, number/, etc.), go up one level
-  const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name'];
+  const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name', 'oracle'];
   if (segments.length > 0 && toolFolders.includes(segments[segments.length - 1])) {
     return '../';
   }
@@ -311,7 +362,7 @@ function initHeader() {
 
   function isActive(page) {
     if (page === '' || page === 'index.html') {
-      const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name'];
+      const toolFolders = ['card', 'number', 'spinner', 'dice', 'coin', 'name', 'oracle'];
       const inToolFolder = toolFolders.some(f => currentPath.includes('/' + f + '/'));
       if (inToolFolder) return false;
       return currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath === '/';
@@ -333,6 +384,7 @@ function initHeader() {
     { key: 'nav.dice',    href: base + 'dice/',    page: 'dice',    icon: 'fa-dice' },
     { key: 'nav.coin',    href: base + 'coin/',    page: 'coin',    icon: 'fa-coins' },
     { key: 'nav.name',    href: base + 'name/',    page: 'name',    icon: 'fa-user-tag' },
+    { key: 'nav.oracle',  href: base + 'oracle/',  page: 'oracle',  icon: 'fa-eye' },
   ];
 
   const allLinks = [...mainLinks, ...quickLinks, ...moreLinks];
